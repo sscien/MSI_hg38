@@ -1,0 +1,8 @@
+#!/bin/sh
+mem=$1;shift
+threads=$1;shift
+log=$1;shift
+#bsub -q ding-lab -M${mem}000000 -n${threads} -R "span[hosts=1] rusage[mem=${mem}000]" -oo ${log} "$@"
+bsub -q research-hpc -M${mem}000000 -n${threads} -R "span[hosts=1] rusage[mem=${mem}000]" -oo ${log} -a "docker(registry.gsc.wustl.edu/genome/genome_perl_environment)" "$@"
+#bsub -q ding-lab -g /steven/18 -M${mem}000000 -n${threads} -R "span[hosts=1] rusage[mem=${mem}000]" -oo ${log} "$@"
+#bsub -g /qgao/18 -M${mem}000000 -n${threads} -R "span[hosts=1] rusage[mem=${mem}000]" -oo ${log} "$@"
