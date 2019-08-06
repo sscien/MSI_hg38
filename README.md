@@ -1,10 +1,10 @@
 Daniel Cui Zhou
 daniel.cui@wustl.edu
-Last updated: 10/30/18
+Last updated: 08/06/19
 
 Adapted from Qingsong Gao's hg19 pipeline.
 
-VERSION: v1.1
+VERSION: v1.2
 Build: hg38
 Cluster: MGI
 
@@ -20,3 +20,5 @@ More details can be found in the github page.
 Processing details:
 Run "get_link.pl" to generate a "to_run.sh" file and create the appropriate folder directory for each sample.
 Run "to_run.sh" in order to submit MSIsensor jobs.
+
+Changelog: updated paths in MGI

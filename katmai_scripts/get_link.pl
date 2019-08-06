@@ -20,6 +20,6 @@ while(<IN>)
 	my @m = split(/\t/,$nxt);
         system("ln -s $m[5] $sample/$sample.T.bam");
         system("ln -s $m[5].bai $sample/$sample.T.bam.bai");
-	print OUT "/gscmnt/gc2521/dinglab/dcui/MSI/MSIsensor/CPTAC_pipelines/MSIsensor_hg38/lsf_hpc 50 1 $sample.log bash /gscmnt/gc2521/dinglab/dcui/MSI/MSIsensor/CPTAC_pipelines/MSIsensor_hg38/msisensor.sh $sample $sample.N.bam $sample.T.bam\n";
+	print OUT "tmux new -d -s \"$sample\" \'bash /diskmnt/Projects/Users/dcui/Projects/MSI_hg38_pipeline/msisensor.sh $sample $sample.N.bam $sample.T.bam\'\n";
 }
 
