@@ -1,12 +1,12 @@
-Daniel Cui Zhou
-daniel.cui@wustl.edu
-Last updated: 08/06/19
+Yizhe Song
+y.song@wustl.edu
+Last updated: 11/17/21
 
-Adapted from Qingsong Gao's hg19 pipeline.
+Adapted from Daniel Cui Zhou's hg38 pipeline.
 
-VERSION: v1.2
+VERSION: v1.4
 Build: hg38
-Cluster: MGI
+Cluster: katmai
 
 MSIsensor can be found here: https://github.com/ding-lab/msisensor.
 MSI scores can roughly be interpreted as the percentage of microsatellite sites (with deep enough sequencing coverage) that have a lesion.
@@ -18,7 +18,22 @@ chromosome, location, repeat_unit_length, repeat_unit_binary, repeat_times, left
 More details can be found in the github page.
 
 Processing details:
-Run "get_link.pl" to generate a "to_run.sh" file and create the appropriate folder directory for each sample.
+Run "makeDir_msi_v1.py" to generate a "to_run.sh" file and create the appropriate folder directory for each sample. 
 Run "to_run.sh" in order to submit MSIsensor jobs.
+Run "copy_MSI_scores.sh" and "copy_MSI_sites.sh" to organize the results.
+Run "analysis_description_V4.py" to generate Analysis summary file
 
-Changelog: updated paths in MGI
+
+Changelog: updated paths in katmai
+
+Versions:
+
+1.4: Adapted MSIsensor to be compatible with katmai since MGI was down; Changed perl script to Python script (get_link.pl to makeDir_msi_v1.py), fixed bugs for querying matched tumor-normal pairs; Added run_name for analysis description file (MSI.analysis_description.dat)
+
+1.3: Fixed minor bug (highly unusual edge cases with normal bam swaps). Recommended to rerun samples with v1.3 just in case.
+
+1.2: Slight modification to reduce job memory requirements
+
+1.1: Slight modification for faster parallel job submission
+
+1.0: Pipeline developed for hg38
