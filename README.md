@@ -31,7 +31,7 @@ Changelog: updated paths in katmai
 
 Versions:
 
-1.4: Adapted MSIsensor to be compatible with katmai since MGI was down; Changed perl script to Python script (get_link.pl to makeDir_msi_v1.py), fixed bugs for querying matched tumor-normal pairs; Added run_name for analysis description file (MSI.analysis_description.dat)
+1.4: Compatible with v1.3; Fixed bugs for querying matched tumor-normal pairs; Added run_name for analysis description file.
 
 1.3: Fixed minor bug (highly unusual edge cases with normal bam swaps). Recommended to rerun samples with v1.3 just in case.
 
