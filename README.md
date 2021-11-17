@@ -1,5 +1,8 @@
 Yizhe Song
 y.song@wustl.edu
+
+& Daniel Cui Zhou daniel.cui@wustl.edu
+
 Last updated: 11/17/21
 
 Adapted from Daniel Cui Zhou's hg38 pipeline.
