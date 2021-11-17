@@ -24,7 +24,7 @@ Processing details:
 Run "makeDir_msi_v1.py" to generate a "to_run.sh" file and create the appropriate folder directory for each sample. 
 Run "to_run.sh" in order to submit MSIsensor jobs.
 Run "copy_MSI_scores.sh" and "copy_MSI_sites.sh" to organize the results.
-Run "analysis_description_V4.py" to generate Analysis summary file
+Run "analysis_description_V3.py" to generate Analysis summary file
 
 
 Changelog: updated paths in katmai
