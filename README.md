@@ -3,13 +3,13 @@ y.song@wustl.edu
 
 & Daniel Cui Zhou daniel.cui@wustl.edu
 
-Last updated: 11/17/21
+Last updated: 04/11/22
 
 Adapted from Daniel Cui Zhou's hg38 pipeline.
 
-VERSION: v1.4
+VERSION: v1.5
 Build: hg38
-Cluster: katmai
+Cluster: compute1
 
 MSIsensor can be found here: https://github.com/ding-lab/msisensor.
 MSI scores can roughly be interpreted as the percentage of microsatellite sites (with deep enough sequencing coverage) that have a lesion.
@@ -30,6 +30,7 @@ Run "analysis_description_V3.py" to generate Analysis summary file
 Changelog: updated paths in katmai
 
 Versions:
+1.5: Compatible with v1.4; Dockerized MSI_hg38 v1.4 pipeline to work on compute1
 
 1.4: Compatible with v1.3; Fixed bugs for querying matched tumor-normal pairs; Added run_name for analysis description file.
 
