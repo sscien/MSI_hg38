@@ -1,7 +1,11 @@
-# update catalog file
+
+
+# 1 update catalog file
 
 cd /storage1/fs1/dinglab/Active/Projects/ysong/Projects/cptac_jobs/cptac_catalog/
 wget https://raw.githubusercontent.com/ding-lab/CPTAC3.catalog/master/BamMap/storage1.BamMap.dat
+
+# 2 update the sample.txt and work.list which contain the case_id
 
 ###
 cd /storage1/fs1/dinglab/Active/Projects/ysong/Projects/cptac_jobs/cptac_msi_analysis/msi_batch_822/ 
