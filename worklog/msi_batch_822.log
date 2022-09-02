@@ -80,3 +80,11 @@ python /storage1/fs1/dinglab/Active/Projects/ysong/pipelines/MSI_Bulk/msi_batch_
 cd /storage1/fs1/dinglab/Active/Projects/ysong/Projects/cptac_jobs/cptac_msi_analysis/msi_batch_0308/
 export LSF_DOCKER_VOLUMES="$HOME:$HOME $STORAGE1_DINGLAB:$STORAGE1_DINGLAB $STORAGE1_MATT:$STORAGE1_MATT $SCRATCH1_DINGLAB:$SCRATCH1_DINGLAB"
 bsub -n 16 -N -u ysongwustl@gmail.com -oo /storage1/fs1/dinglab/Active/Projects/ysong/Projects/cptac_jobs/cptac_msi_analysis/msi_batch_0308/msi_logs/msi.out.%J.%I.log -eo /storage1/fs1/dinglab/Active/Projects/ysong/Projects/cptac_jobs/cptac_msi_analysis/msi_batch_0308/msi_logs/msi.err.%J.%I.log -q general -J 'AML_MSI[1-186]' -g /compute-dinglab/GBM -G compute-dinglab -M 20G -R 'select[mem>20G] rusage[mem=20G]' -a 'docker(informationsea/msisensor:latest)' /bin/bash -c "/storage1/fs1/dinglab/Active/Projects/ysong/pipelines/MSI_Bulk/msi_batch_0308/msisensor.sh /storage1/fs1/dinglab/Active/Projects/ysong/Projects/cptac_jobs/cptac_msi_analysis/msi_batch_822/work.list"
+
+
+
+
+#####
+
+/storage1/fs1/dinglab/Active/Projects/ysong/Projects/cptac_jobs/cptac_msi_analysis/msi_batch_822/MSI_processing_description.txt
+/storage1/fs1/dinglab/Active/Projects/ysong/Projects/cptac_jobs/cptac_msi_analysis/msi_batch_822/msi_analysis_summary_batch_20220822.txt
