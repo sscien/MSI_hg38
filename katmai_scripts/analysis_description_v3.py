@@ -11,11 +11,11 @@ for line in sampleFile:
     cancer_type[line[1]] = line[2];
 sampleFile.close();
 
-samples = [i for i in subprocess.check_output("ls",shell=True).decode("utf-8").strip().split("\n") if "C3" in i]
+samples = [i for i in subprocess.check_output("ls",shell=True).decode("utf-8").strip().split("\n") if "C" in i]
 currPath = os.path.abspath(".")+"/";
 print("Run_Name\tCase_Name\tDisease\tOutput_File_Path\tOutput_File_Format\tTumor_Sample_Name\tTumor_BAM_UUID\tNormal_Sample_Name\tNormal_BAM_UUID");
 for sample in samples:
-    print("\t".join([sample,
+    print("\t".join([sample+"_"+str(uuid.uuid4()),
         sample,
         cancer_type[sample],
         currPath+"Submission/"+sample+".MSI.WXS.dat",
@@ -27,7 +27,7 @@ for sample in samples:
         #uuidDict[os.path.realpath(sample+"/"+sample+".N.bam")]
         uuidDict[os.path.realpath(sample+"/"+sample+".N.bam")]
                     ]))
-    print("\t".join([sample,
+    print("\t".join([sample+"_"+ str(uuid.uuid4()),
         sample,
         cancer_type[sample],
         currPath+"Submission/"+sample+".sites.tsv",
