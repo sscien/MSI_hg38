@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source activate MSI_hg38
+#source activate MSI_hg38
 
 REF="/diskmnt/Datasets/Reference/GRCh38.d1.vd1/GRCh38.d1.vd1.fa"
 SAMPLE=$1
