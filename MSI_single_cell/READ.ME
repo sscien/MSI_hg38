@@ -1,0 +1,97 @@
+##########################################################################################
+### Name: Apply MSI sensor to single cell RNA-seq data
+### Author: Yizhe Song, Fernanda Martins Rodrigues
+### Date:  Sep 12, 2022
+### Usage: bash msi_calculation.sh $sample 
+### This pipeline is underdevlopment and should only be used for testing purpose
+##########################################################################################
+
+NOTE: SPLIT BAMS NEEDS LOTS OF SPACE (>100GB), PLEASE TEST IT IN PROPER FOLDER.
+
+Data for the following samples were used for testing:
+- CM492:
+	- CM492C2-XBn1_1_c5
+	- CM492C2-XBn2_1_c5
+
+- CM556:
+	- CM556C1-XBn1_1_c5
+	- CM556C1-XBn2_1_c5
+	- CM556C2-XBn1_1_c5
+
+- CM618:
+	- CM618C1-XBn1_1_c5
+	- CM618C2-XBn1_1_c5
+
+Katmai bams location: /diskmnt/Projects/MetNet_analysis/Colorectal/cellranger
+
+Cell type annotation metadata used is located in katmai at:
+	/diskmnt/Projects/MetNet_analysis/Colorectal/Processed_RDS_objects/metadata.txt
+
+##########################################################################################
+### Prerequisites: sinto, samtools, and msisensor; cell_type annotation
+### Katmai
+##########################################################################################
+
+## 1. first generate barcode files from metadata file (this step has already been done for test samples)
+
+$ while read sample; do grep $(echo $sample | cut -f1 -d"_") cell_type_annotation/metadata.txt | cut -f2,3 | grep Tumor | cut -f2 -d"_" > cell_type_annotation/${sample}/tumor_barcodes.txt; grep $(echo $sample | cut -f1 -d"_") cell_type_annotation/metadata.txt | cut -f2,3 | grep -v Tumor | cut -f2 -d"_" | awk '{print $1,"\t","Normal"}' > cell_type_annotation/${sample}/normal_barcodes.txt; cat cell_type_annotation/${sample}/tumor_barcodes.txt cell_type_annotation/${sample}/normal_barcodes.txt > cell_type_annotation/${sample}/tumor_normal_barcodes.txt; done < test_samples.txt
+
+## 2. split bams into tumor.bam and normal.bam then calculate msi score
+
+# msi_calculation.sh
+
+```
+#!/bin/bash
+
+# Activate environment
+
+# source activate /diskmnt/Projects/Users/ysong/program/anaconda3/envs/R
+
+conda activate /diskmnt/Projects/Users/ysong/program/anaconda3/envs/R
+
+sample=$1
+
+## split bam
+
+mkdir -p ./split_BAMs/${sample}
+
+cd split_BAMs/${sample}
+
+echo "Splitting bam ..."
+
+sinto filterbarcodes -b /diskmnt/Projects/MetNet_analysis/Colorectal/cellranger/${sample}/outs/possorted_genome_bam.bam -c /diskmnt/Projects/Users/ysong/project/MSISensor_testing/mCRC/cell_type_annotation/${sample}/tumor_normal_barcodes.txt -p 50 >> ${sample}.sinto.out 2>> ${sample}.sinto.err
+
+echo "Splitting done."
+
+## sort bams
+
+echo "Sorting bams ..."
+
+samtools sort Tumor.bam -o Tumor.sorted.bam
+samtools sort Normal.bam -o Normal.sorted.bam
+
+echo "Sorting done."
+
+## index bams
+
+echo "Indexing bams ..."
+samtools index Tumor.sorted.bam
+samtools index Normal.sorted.bam
+
+echo "Indexing done."
+
+## calculate msi score
+
+cd ../../
+mkdir -p MSI_outputs/${sample}
+
+echo "Calculating msi score ..."
+
+/diskmnt/Projects/Users/ysong/program/msisensor/msisensor msi -d /diskmnt/Projects/Users/ysong/project/MSISensor_testing/mCRC/microsatellites.list -n split_BAMs/${sample}/Normal.sorted.bam -t split_BAMs/${sample}/Tumor.sorted.bam -b 25 -l 1 -q 1 -o MSI_outputs/${sample}
+
+
+echo "All done."
+
+```
+
+
