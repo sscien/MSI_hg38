@@ -37,7 +37,7 @@ export LSF_DOCKER_VOLUMES="$HOME:$HOME $STORAGE1_DINGLAB:$STORAGE1_DINGLAB $STOR
 fusion
 conda activate Fusion
 cd /storage1/fs1/dinglab/Active/Projects/ysong/Projects/cptac_jobs/cptac_msi_analysis/msi_batch_822/
-python /storage1/fs1/dinglab/Active/Projects/ysong/pipelines/MSI_Bulk/msi_batch_0308/analysis_description.v4.py /storage1/fs1/dinglab/Active/Projects/ysong/Projects/cptac_jobs/cptac_msi_analysis/msi_batch_822/sample.map.txt > msi_analysis_summary_batch_20220822.txt
+python /storage1/fs1/dinglab/Active/Projects/ysong/pipelines/MSI_Bulk/msi_batch_0308/analysis_description.v4.py /storage1/fs1/dinglab/Active/Projects/ysong/Projects/cptac_jobs/cptac_msi_analysis/msi_batch_822/sample.map.txt > msi_analysis_summary_batch_20221123.txt
 
 
 ### copy results and add descriptions
